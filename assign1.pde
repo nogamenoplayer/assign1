@@ -3,15 +3,14 @@ PImage shipImg;//fighter
 PImage ImgEnemy;
 PImage ImgTreasure;
 PImage ImgHp;
-PImage bg;
+PImage bg1;
+PImage bg2;
 
   int C,D;//bg x y 
   int speedC,speedD;  //bg
   
-  
-  int z;      //fighter x
 
-  int A,B;      //Enemy 
+  int A,B;       
   int speedA,speedB;  //Enemy
   
   int E,F;      //Treasure 
@@ -19,29 +18,21 @@ PImage bg;
   int x,y,w,h; //hp rect
   
   
-
 void setup () {
   size(640,480) ;  // must use this size.
   
-  bg=loadImage("img/bg1.png");
-  
-  
-  
-  bg=loadImage("img/bg2.png");
-   
-   
-  
+  bg1=loadImage("img/bg1.png");
+  bg2=loadImage("img/bg2.png");
   
   ImgEnemy=loadImage("img/enemy.png");
-    A=100;
-    B=100;
-    speedA =floor(random(5,0));
-    speedB =floor(random(0,0));
+   
+    speedA =floor(random(5,470));
+    speedB =floor(random(35,420));
     //Enemy 
     
     ImgTreasure=loadImage("img/treasure.png");
-    E =floor(random(0,450));
-    F =floor(random(0,450));
+    E =floor(random(150,450));
+    F =floor(random(35,450));
   //Treasure
   
    x=0;
@@ -52,7 +43,7 @@ void setup () {
    w=floor(random(10,200));
    //hp
   
-  z=450;  //fighter x
+ 
   shipImg=loadImage("img/fighter.png");    //fighter
   
   
@@ -60,23 +51,18 @@ void setup () {
 }
 
 void draw() {
-  
-  
-  
-  
-  
-  
-  image(bg,C,D);
-   C+=speedC;
-   D+=speedD;
+  image(bg1,speedC % 1280 -640,0);
+  image(bg2,(speedC+640) % 1280 -640,0);
+  speedC += 1;
         //bg
+ 
+ 
   
-  image(shipImg,z,200); //fighter 
+  image(shipImg,580,240); //fighter 
   
-  image(ImgEnemy,A,B);
-    A+=speedA;
-    B+=speedB;
-    A%=640;
+  image(ImgEnemy,speedA,speedB);
+    speedA+=3;
+    speedA%=640;
   
   image(ImgTreasure,E,F);
    
